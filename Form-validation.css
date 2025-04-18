@@ -31,3 +31,20 @@ button {
     padding: 5px;
     border-radius: 4px;
 }
+/* Add this to your existing Form.css file */
+.password-toggle-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+  }
+  
+  /* Adjust the form-input positioning for password fields */
+  .password-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
