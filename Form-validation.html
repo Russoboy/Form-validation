@@ -9,22 +9,29 @@
     <body>
         <form id="myForm">
             <label for="username">Username:</label>
-            <input type="text" class="form-input" id="username">
+            <input type="text" class="form-input" id="username" title="Enter Username 4-8 Characters e.g Joe27" >
             <div id="username-error" class="Error-message"></div>
     
             <label for="email">Email:</label>
-            <input type="text" class="form-input" id="email">
+            <input type="text" class="form-input" id="email" title="Ronaldo@gmail.com">
             <div id="email-error" class="Error-message" ></div>
 
             <label for="password">Password:</label>
-            <input type="password" class="form-input" id="password">
-            <div id="password-error" class="Error-message"></div>
+        <div class="password-wrapper">
+            <input type="password" class="form-input" id="password" placeholder="Exact Format e.g Secure@123, XyZ#4567" title="Enter a Strong Password that includes numbers and letters too">
+            <span class="password-toggle-icon" id="password-toggle">👁️</span>
+        </div>
+        <div id="password-error" class="Error-message"></div>
 
-            <label for="password">Confirm Password:</label>
-            <input type="password" class="form-input" id="confirm-password">
-            <div id="confirm-password-error" class="Error-message"></div>
+        <label for="confirm-password">Confirm Password:</label>
+        <div class="password-wrapper">
+            <input type="password" class="form-input" id="confirm-password" title="Ensure the Passwords match each other" >
+            <span class="password-toggle-icon" id="confirm-password-toggle">👁️</span>
+        </div>
+        <div id="confirm-password-error" class="Error-message"></div>
 
             <button type="submit">Submit</button>
+            <button id="reset-button" >Reset</button>
         </form>
      
         <script src="Form.js"></script>
