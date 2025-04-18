@@ -43,12 +43,11 @@ function validateEmail() {
   }
 
 resetButton.addEventListener("click", () => {
-
   formInput.textContent = "";
 })
 
   function blockData() {
-    const blockUsername = ["Nazi", "Hitler", "Stalin", "Trump", "Israel", "Fuck","Nigga"]
+    const blockUsername = ["Nazi", "Hitler", "Stalin" , "Fuck", "Nigga"]
     const username = document.getElementById("username");
     const error = document.getElementById('username-error')
  
@@ -71,7 +70,7 @@ blockData();
   // Function to check if password is empty
 function validatePassword() {
   let error = document.getElementById('password-error');   
-  let strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  let strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#_%^*()+=])[A-Za-z\d@$!%*?&#_%^*()+=]{8,}$/;
   let passwordValue = password.value;
   
   if (password.value.trim() === "" || password.value.length < 8) {
@@ -79,7 +78,6 @@ function validatePassword() {
         document.getElementById('password-error').style.color = "red"
         isValid = false;
         password.style.border = "2px solid red";
-        password.innerHTML = `Fill in the field or let your password be at least 8 characters `;
       } else {
         document.getElementById('password-error').textContent = "Valid Password";
         document.getElementById('password-error').style.color = "green"
@@ -99,7 +97,58 @@ function validatePassword() {
     return true;
   }
   }
+  
+// Add password visibility toggle functionality
+function addPasswordToggle(inputId) {
+  // Get the password input element
+  const passwordInput = document.getElementById(inputId);
+  
+  // Create the eye icon element
+  const toggleIcon = document.createElement("span");
+  toggleIcon.innerHTML = "👁️";
+  toggleIcon.className = "password-toggle-icon";
+  toggleIcon.title = "Show/Hide Password";
+  
+  // Style the eye icon
+  toggleIcon.style.position = "absolute";
+  toggleIcon.style.right = "10px";
+  toggleIcon.style.top = "50%";
+  toggleIcon.style.transform = "translateY(-50%)";
+  toggleIcon.style.cursor = "pointer";
+  toggleIcon.style.userSelect = "none";
+  
+  // Create a wrapper to position the icon correctly
+  const wrapper = document.createElement("div");
+  wrapper.style.position = "relative";
+  wrapper.style.width = "100%";
+  
+  // Insert the wrapper before the password input in the DOM
+  passwordInput.parentNode.insertBefore(wrapper, passwordInput);
+  
+  // Move the password input into the wrapper
+  wrapper.appendChild(passwordInput);
+  
+  // Add the toggle icon to the wrapper
+  wrapper.appendChild(toggleIcon);
+  
+  // Add click event to toggle password visibility
+  toggleIcon.addEventListener("click", function() {
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      toggleIcon.innerHTML = "🔒"; // Change to locked icon when password is visible
+    } else {
+      passwordInput.type = "password";
+      toggleIcon.innerHTML = "👁️"; // Change back to eye when password is hidden
+    }
+  });
+}
 
+// Initialize toggle functionality for both password fields
+document.addEventListener("DOMContentLoaded", function() {
+  // Add the toggle to both password and confirm password fields
+  addPasswordToggle("password");
+  addPasswordToggle("confirm-password");
+});
 
 
 
